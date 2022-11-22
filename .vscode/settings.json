@@ -1,0 +1,6 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/lock",
+    "files.associations": {
+        "array": "cpp"
+    }
+}

@@ -3,9 +3,19 @@ cmake_minimum_required(VERSION 3.22)
 # Pull in PICO SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(gate C CXX ASM)
+project(crypto_lock C CXX ASM)
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD 20)
+
+
+set(GCC_WARNING_FLAGS 
+"-Wall -Wextra -Wfloat-equal -Werror\
+ -Wno-unused-variable -Wfatal-errors"
+) # 
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_WARNING_FLAGS} ")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GCC_WARNING_FLAGS} ")
+
 
 set(PICO_EXAMPLES_PATH ${PROJECT_SOURCE_DIR})
 
@@ -17,19 +27,27 @@ include(example_auto_set_url.cmake)
 
 if (TARGET tinyusb_device)
 
-    add_executable(${PROJECT_NAME}
-                main.cpp
-                )
-    # add_subdirectory(include)
-    # add_subdirectory(src)
+    set(SOURCES 
+    ${PROJECT_SOURCE_DIR}/src/main.cpp
+    ${PROJECT_SOURCE_DIR}/src/uart/uart.cpp
+    ${PROJECT_SOURCE_DIR}/src/protocol/protocol.cpp
+    )
 
-    target_include_directories(${PROJECT_NAME} PUBLIC uart)
-    target_link_directories(${PROJECT_NAME} PRIVATE uart)
-    target_link_libraries(${PROJECT_NAME} uart)
+    add_executable(${PROJECT_NAME} ${SOURCES})
 
+    target_include_directories(${PROJECT_NAME} 
+    PUBLIC ${PROJECT_SOURCE_DIR}/include/
+    PUBLIC ${PROJECT_SOURCE_DIR}/include/uart
+    PUBLIC ${PROJECT_SOURCE_DIR}/include/protocol
+    )
 
     # Pull in our pico_stdlib which pulls in com
-    target_link_libraries(${PROJECT_NAME} pico_stdlib)
+    target_link_libraries(${PROJECT_NAME} 
+        pico_stdlib 
+        pico_stdio 
+        hardware_uart 
+        hardware_irq
+        )
 
     # enable usb output, disable uart output
     pico_enable_stdio_usb(${PROJECT_NAME} 1)
