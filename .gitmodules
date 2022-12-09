@@ -1,3 +1,6 @@
 [submodule "lock/external/mbedtls"]
 	path = lock/external/mbedtls
 	url = git@github.com:Mbed-TLS/mbedtls.git
+[submodule "lock/external/encryptions"]
+	path = lock/external/encryptions
+	url = git@github.com:calccrypto/Encryptions.git

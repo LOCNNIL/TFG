@@ -13,8 +13,10 @@ set(GCC_WARNING_FLAGS
  -Wno-unused-variable -Wfatal-errors"
 ) # 
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_WARNING_FLAGS} ")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GCC_WARNING_FLAGS} ")
+set(GCC_COMPILE_OPTIONS "-fexceptions -frtti")
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COMPILE_OPTIONS} ${GCC_WARNING_FLAGS} ")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GCC_COMPILE_OPTIONS} ${GCC_WARNING_FLAGS} ")
 
 message("CXX flags: ${CMAKE_CXX_FLAGS}")
 message("C flags: ${CMAKE_C_FLAGS}")
