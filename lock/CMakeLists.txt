@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.22)
 
 # Pull in PICO SDK (must be before project)
-include(pico_sdk_import.cmake)
+include(cmake/pico_sdk_import.cmake)
+include(cmake/update_git_submodules.cmake)
 
 project(crypto_lock C CXX ASM)
 set(CMAKE_C_STANDARD 17)
@@ -11,9 +12,11 @@ set(CMAKE_CXX_STANDARD 20)
 set(GCC_WARNING_FLAGS 
 "-Wall -Wextra -Wfloat-equal -Werror\
  -Wno-unused-variable -Wfatal-errors"
-) # 
+)
 
-set(GCC_COMPILE_OPTIONS "-fexceptions -frtti")
+set(GCC_COMPILE_OPTIONS 
+# "-fexceptions -frtti"
+)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COMPILE_OPTIONS} ${GCC_WARNING_FLAGS} ")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${GCC_COMPILE_OPTIONS} ${GCC_WARNING_FLAGS} ")
@@ -27,7 +30,7 @@ set(PICO_EXAMPLES_PATH ${PROJECT_SOURCE_DIR})
 #initialize the SDK
 pico_sdk_init()
 
-include(example_auto_set_url.cmake)
+include(cmake/example_auto_set_url.cmake)
 
 
 if (TARGET tinyusb_device)
@@ -52,6 +55,8 @@ if (TARGET tinyusb_device)
         pico_stdio 
         hardware_uart 
         hardware_irq
+        # pico_lwip_mbedtls
+        # pico_mbedtls
         )
 
     # enable usb output, disable uart output
@@ -69,4 +74,3 @@ elseif(PICO_ON_DEVICE)
     the SDK")
 
 endif()
-
