@@ -2,6 +2,9 @@
 .vscode/settings.json
 **/.vscode/settings.json
 
+# Folder with submodules
+lock/external/*
+
 # Folder with reference articles:
 artigos/*
 
