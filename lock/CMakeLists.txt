@@ -49,10 +49,13 @@ if (TARGET tinyusb_device)
 
     target_include_directories(${PROJECT_NAME} 
         PUBLIC ${PROJECT_SOURCE_DIR}/include/
-        PUBLIC ${PROJECT_SOURCE_DIR}/include/uart
-        PUBLIC ${PROJECT_SOURCE_DIR}/include/protocol
-        PUBLIC ${PROJECT_SOURCE_DIR}/include/mbedtls
-        PUBLIC ${PROJECT_SOURCE_DIR}/include/psa
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/benchmark/
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/pch/
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/crypto/
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/uart/
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/protocol/
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/mbedtls/
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/psa/
     )
 
     # Pull in our pico_stdlib which pulls in com
@@ -60,8 +63,14 @@ if (TARGET tinyusb_device)
         pico_stdlib 
         pico_stdio 
         hardware_uart 
+        hardware_adc
         hardware_irq
         ${PROJECT_SOURCE_DIR}/lib/libmbedcrypto.a
+    )
+
+    # Configure PreCompiled Headers
+    target_precompile_headers(${PROJECT_NAME} 
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/pch/pch.h
     )
 
     # enable usb output, disable uart output
