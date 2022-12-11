@@ -44,9 +44,11 @@ if (TARGET tinyusb_device)
     add_executable(${PROJECT_NAME} ${SOURCES})
 
     target_include_directories(${PROJECT_NAME} 
-    PUBLIC ${PROJECT_SOURCE_DIR}/include/
-    PUBLIC ${PROJECT_SOURCE_DIR}/include/uart
-    PUBLIC ${PROJECT_SOURCE_DIR}/include/protocol
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/uart
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/protocol
+        # PUBLIC ${PROJECT_SOURCE_DIR}/include/mbedtls
+        # PUBLIC ${PROJECT_SOURCE_DIR}/include/psa
     )
 
     # Pull in our pico_stdlib which pulls in com
@@ -55,9 +57,8 @@ if (TARGET tinyusb_device)
         pico_stdio 
         hardware_uart 
         hardware_irq
-        # pico_lwip_mbedtls
-        # pico_mbedtls
-        )
+        # libmbedcrypto
+    )
 
     # enable usb output, disable uart output
     pico_enable_stdio_usb(${PROJECT_NAME} 1)
