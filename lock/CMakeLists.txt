@@ -3,6 +3,10 @@ cmake_minimum_required(VERSION 3.22)
 # Pull in PICO SDK (must be before project)
 include(cmake/pico_sdk_import.cmake)
 include(cmake/update_git_submodules.cmake)
+include(cmake/MbedTLSConfig.cmake)
+include(cmake/MbedTLSConfigVersion.cmake)
+include(cmake/MbedTLSTargets-release.cmake)
+include(cmake/MbedTLSTargets.cmake)
 
 project(crypto_lock C CXX ASM)
 set(CMAKE_C_STANDARD 17)
@@ -47,8 +51,8 @@ if (TARGET tinyusb_device)
         PUBLIC ${PROJECT_SOURCE_DIR}/include/
         PUBLIC ${PROJECT_SOURCE_DIR}/include/uart
         PUBLIC ${PROJECT_SOURCE_DIR}/include/protocol
-        # PUBLIC ${PROJECT_SOURCE_DIR}/include/mbedtls
-        # PUBLIC ${PROJECT_SOURCE_DIR}/include/psa
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/mbedtls
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/psa
     )
 
     # Pull in our pico_stdlib which pulls in com
@@ -57,7 +61,7 @@ if (TARGET tinyusb_device)
         pico_stdio 
         hardware_uart 
         hardware_irq
-        # libmbedcrypto
+        ${PROJECT_SOURCE_DIR}/lib/libmbedcrypto.a
     )
 
     # enable usb output, disable uart output
