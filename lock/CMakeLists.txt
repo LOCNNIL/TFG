@@ -41,8 +41,10 @@ if (TARGET tinyusb_device)
 
     set(SOURCES 
     ${PROJECT_SOURCE_DIR}/src/main.cpp
-    ${PROJECT_SOURCE_DIR}/src/uart/uart.cpp
+    ${PROJECT_SOURCE_DIR}/src/crypto/entrolpy_source.cpp
     ${PROJECT_SOURCE_DIR}/src/protocol/protocol.cpp
+    ${PROJECT_SOURCE_DIR}/src/state_machine/state_machine.cpp
+    ${PROJECT_SOURCE_DIR}/src/uart/uart.cpp
     )
 
     add_executable(${PROJECT_NAME} ${SOURCES})
@@ -50,12 +52,13 @@ if (TARGET tinyusb_device)
     target_include_directories(${PROJECT_NAME} 
         PUBLIC ${PROJECT_SOURCE_DIR}/include/
         PUBLIC ${PROJECT_SOURCE_DIR}/include/benchmark/
-        PUBLIC ${PROJECT_SOURCE_DIR}/include/pch/
         PUBLIC ${PROJECT_SOURCE_DIR}/include/crypto/
-        PUBLIC ${PROJECT_SOURCE_DIR}/include/uart/
-        PUBLIC ${PROJECT_SOURCE_DIR}/include/protocol/
         PUBLIC ${PROJECT_SOURCE_DIR}/include/mbedtls/
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/pch/
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/protocol/
         PUBLIC ${PROJECT_SOURCE_DIR}/include/psa/
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/state_machine
+        PUBLIC ${PROJECT_SOURCE_DIR}/include/uart/
     )
 
     # Pull in our pico_stdlib which pulls in com
