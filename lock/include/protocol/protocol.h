@@ -5,15 +5,17 @@
 
 namespace crypto::protocol
 {
+    inline constexpr int standard_msg_size = 22;
+    inline constexpr int keybits = 128;
 
 class Protocol
 {
 private:
-    crypto::states::State m_state;
+    crypto::protocol::State m_state;
 public:
     Protocol(){};
     ~Protocol(){};
-    void set_state(crypto::states::State st);
+    void set_state(crypto::protocol::State st);
     void state_machine();
 };
 

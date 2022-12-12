@@ -2,7 +2,7 @@
 #define CRYPTO_STATES_H
 
 
-namespace crypto::states{
+namespace crypto::protocol{
 
 enum class State{
     send_any_packet=1,
