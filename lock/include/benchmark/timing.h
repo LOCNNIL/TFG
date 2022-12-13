@@ -13,10 +13,14 @@ class Timer {
     static absolute_time_t m_start_time_point;
 
    public:
-    Timer() {
+    void start(){
         m_start_time_point = get_absolute_time();
     }
-    ~Timer() { stop(); }
+    Timer() {
+        std::cout << "Starting timer class\n";
+        start();
+    }
+    ~Timer() {stop();}
 
     void stop() {
         int64_t duration;
@@ -26,17 +30,6 @@ class Timer {
         std::cout << "Time elapsed: " << duration << "us (" << ms << "ms)\n";
     }
 };
-
-/// \tag::get_time[]
-// Simplest form of getting 64 bit time from the timer.
-// It isn't safe when called from 2 cores because of the latching
-// so isn't implemented this way in the sdk
-static uint64_t get_time(void) {
-    // Reading low latches the high value
-    uint32_t lo = timer_hw->timelr;
-    uint32_t hi = timer_hw->timehr;
-    return ((uint64_t) hi << 32u) | lo;
-}
 
 }
 
