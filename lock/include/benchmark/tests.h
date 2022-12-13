@@ -38,6 +38,10 @@ namespace crypto::benchmark {
 
         void aes_ecb();
 
+        void aes_cbc();
+
+        void aes_xts();
+
     };
 
 
