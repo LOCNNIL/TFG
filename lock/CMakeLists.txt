@@ -14,8 +14,9 @@ set(CMAKE_CXX_STANDARD 20)
 
 
 set(GCC_WARNING_FLAGS 
-"-Wall -Wextra -Wfloat-equal -Werror\
+"-Wall -Wextra -Wfloat-equal \
  -Wno-unused-variable -Wfatal-errors"
+# -Werror
 )
 
 set(GCC_COMPILE_OPTIONS 
@@ -41,6 +42,7 @@ if (TARGET tinyusb_device)
 
     set(SOURCES 
     ${PROJECT_SOURCE_DIR}/src/main.cpp
+    ${PROJECT_SOURCE_DIR}/src/benchmark/tests.cpp
     ${PROJECT_SOURCE_DIR}/src/crypto/entrolpy_source.cpp
     ${PROJECT_SOURCE_DIR}/src/protocol/protocol.cpp
     ${PROJECT_SOURCE_DIR}/src/state_machine/state_machine.cpp
