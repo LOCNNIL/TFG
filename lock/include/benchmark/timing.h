@@ -10,15 +10,14 @@ namespace crypto::benchmark {
 
 class Timer {
    private:
-    static absolute_time_t m_start_time_point;
+    absolute_time_t m_start_time_point;
 
    public:
     void start(){
         m_start_time_point = get_absolute_time();
     }
     Timer() {
-        std::cout << "Starting timer class\n";
-        start();
+        m_start_time_point = get_absolute_time();
     }
     ~Timer() {stop();}
 
