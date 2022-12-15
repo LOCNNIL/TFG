@@ -5,7 +5,7 @@
 
 namespace crypto::protocol
 {
-    inline constexpr int standard_msg_size = 22;
+    inline constexpr int standard_msg_size = 16;
     inline constexpr int keybits = 128;
 
 class Protocol
