@@ -10,17 +10,10 @@ namespace crypto::protocol // TODO: Complete this class
     private:
         uint32_t standard_private_key[34];
     public:
-        secrets(/* args */);
-        ~secrets();
+        secrets(/* args */){}
+        ~secrets(){}
     };
     
-    secrets::secrets(/* args */)
-    {
-    }
-    
-    secrets::~secrets()
-    {
-    }
     
 } // namespace crypto::protocol
 
