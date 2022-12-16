@@ -84,11 +84,17 @@ int main() {
 
 	while (1) {
 		gpio_put(LED_PIN, ON);
-		sleep_ms(1000);
+		sleep_ms(5);
 
-		unity.aes_ecb();
+		// unity.aes_ecb();
+		// unity.aes_cbc();
+		// unity.aes_xts();
+		// unity.camellia_ecb();
+		// unity.camellia_cbc();
+		// unity.des_ecb();
+		// unity.des_cbc();
 
 		gpio_put(LED_PIN, OFF);
-		sleep_ms(1000);
+		sleep_ms(5);
 	}
 }
