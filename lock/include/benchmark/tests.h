@@ -23,11 +23,25 @@ namespace crypto::benchmark {
 
         void show_result(const char* name, unsigned char* buff, size_t size);
 
+        void print_loop_number();
+
         void aes_ecb();
 
         void aes_cbc();
 
         void aes_xts();
+
+        void camellia_ecb();
+
+        void camellia_cbc();
+
+        void des_ecb();
+
+        void des_cbc();
+
+        void des3_ecb();
+
+        void des3_cbc();
 
     };
 
